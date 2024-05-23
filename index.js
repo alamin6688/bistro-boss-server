@@ -27,10 +27,17 @@ async function run() {
 
     // Get the database and collection on which to run the operation
     const menuCollecion = client.db("bistroDb").collection("menu");
-    // const reviewCollecion = client.db("bistroDb").collection("review");
+    const reviewCollecion = client.db("bistroDb").collection("reviews");
 
+    // Menu related API
     app.get('/menu', async(req, res) =>{
         const result = await menuCollecion.find().toArray();
+        res.send(result);
+    })
+
+    // Reviews related API
+    app.get('/reviews', async(req, res) =>{
+        const result = await reviewCollecion.find().toArray();
         res.send(result);
     })
 
